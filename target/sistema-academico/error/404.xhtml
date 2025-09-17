@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+		xmlns:f="jakarta.faces.core"
+		xmlns:p="primefaces">
+
+<h:head>
+    <title>Página no encontrada - Sistema Académico</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .error-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            max-width: 500px;
+        }
+        
+        .error-code {
+            font-size: 72px;
+            font-weight: bold;
+            color: #667eea;
+            margin: 0;
+        }
+        
+        .error-message {
+            font-size: 24px;
+            color: #333;
+            margin: 20px 0;
+        }
+        
+        .error-description {
+            color: #666;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        
+        .back-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</h:head>
+
+<h:body>
+    <div class="error-container">
+        <h1 class="error-code">404</h1>
+        <h2 class="error-message">Página no encontrada</h2>
+        <p class="error-description">
+            Lo sentimos, la página que está buscando no existe o ha sido movida.
+        </p>
+        <h:link outcome="/login" value="Volver al inicio" styleClass="back-button"/>
+    </div>
+</h:body>
+
+</html>
+

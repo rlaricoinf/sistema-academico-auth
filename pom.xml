@@ -1,0 +1,109 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.academico</groupId>
+    <artifactId>sistema-academico</artifactId>
+    <version>1.0.0</version>
+    <packaging>war</packaging>
+	<name>Sistema Academico</name>
+    <description>Sistema de gestión académica con autenticación de usuarios</description>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+
+        <primefaces.version>15.0.0</primefaces.version>
+        <postgresql.version>42.6.0</postgresql.version>
+    </properties>
+
+    <dependencies>
+    
+		<dependency>
+			<groupId>jakarta.platform</groupId>
+			<artifactId>jakarta.jakartaee-web-api</artifactId>
+			<version>10.0.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Jakarta EE 10 API (WildFly provee la implementación) -->
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>10.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+	        <groupId>jakarta.persistence</groupId>
+	        <artifactId>jakarta.persistence-api</artifactId>
+	        <version>3.1.0</version>
+	        <scope>provided</scope>
+	    </dependency>
+
+		<!-- PrimeFaces (Jakarta compatible) -->
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>${primefaces.version}</version>
+			<classifier>jakarta</classifier>
+        </dependency>
+
+		<!-- PostgreSQL Driver (runtime) -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+        </dependency>
+
+		<!-- Logging API -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.7</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>sistema-academico</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.3</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
+            <!-- Plugin para desplegar en WildFly -->
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>4.2.1.Final</version>
+<!--                <configuration>-->
+<!--                    <hostname>localhost</hostname>-->
+<!--                    <port>9990</port>-->
+<!--                    <username>admin</username>-->
+<!--                    <password>admin</password>-->
+<!--                </configuration>-->
+            </plugin>
+        </plugins>
+    </build>
+</project>
+

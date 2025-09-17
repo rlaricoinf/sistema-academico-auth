@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+		xmlns:f="jakarta.faces.core"
+		xmlns:p="primefaces"
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>Dashboard - Sistema Académico</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 300;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        
+        .container {
+            display: flex;
+            min-height: calc(100vh - 80px);
+        }
+        
+        .sidebar {
+            width: 250px;
+            background: white;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            padding: 20px 0;
+        }
+        
+        .menu-item {
+            display: block;
+            padding: 15px 25px;
+            color: #333;
+            text-decoration: none;
+            border-left: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            background-color: #f8f9fa;
+            border-left-color: #667eea;
+            color: #667eea;
+        }
+        
+        .menu-item i {
+            margin-right: 10px;
+            width: 20px;
+        }
+        
+        .main-content {
+            flex: 1;
+            padding: 30px;
+        }
+        
+        .welcome-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .welcome-card h2 {
+            color: #333;
+            margin: 0 0 10px 0;
+            font-size: 28px;
+            font-weight: 300;
+        }
+        
+        .welcome-card p {
+            color: #666;
+            margin: 0;
+            font-size: 16px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 24px;
+            color: white;
+        }
+        
+        .stat-icon.director { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .stat-icon.profesor { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .stat-icon.estudiante { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .logout-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+    </style>
+</h:head>
+
+<h:body>
+    <div class="header">
+        <div class="header-content">
+            <h1>🎓 Sistema Académico</h1>
+            <div class="user-info">
+                <div class="user-avatar">
+                    <i class="pi pi-user"></i>
+                </div>
+                <div>
+                    <div style="font-weight: 500;">#{autenticacionService.nombreUsuario}</div>
+                    <div style="font-size: 12px; opacity: 0.8;">#{autenticacionService.perfilUsuario}</div>
+                </div>
+                <h:form>
+                    <p:commandButton value="Cerrar Sesión" 
+                                   action="#{loginBean.logout()}"
+                                   styleClass="logout-btn"/>
+                </h:form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="sidebar">
+            <ui:repeat value="#{menuBean.menuItems}" var="item">
+                <h:link value="#{item.nombre}" outcome="#{item.url}" styleClass="menu-item">
+                    <i class="#{item.icono}"></i>
+                </h:link>
+            </ui:repeat>
+        </div>
+        
+        <div class="main-content">
+            <div class="welcome-card">
+                <h2>¡Bienvenido, #{autenticacionService.nombreUsuario}!</h2>
+                <p>Has iniciado sesión como <strong>#{autenticacionService.perfilUsuario}</strong>. 
+                   Utiliza el menú lateral para navegar por las opciones disponibles.</p>
+            </div>
+            
+            <div class="stats-grid">
+                <ui:fragment rendered="#{autenticacionService.esDirector()}">
+                    <div class="stat-card">
+                        <div class="stat-icon director">
+                            <i class="pi pi-users"></i>
+                        </div>
+                        <div class="stat-number">156</div>
+                        <div class="stat-label">Total Usuarios</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon director">
+                            <i class="pi pi-book"></i>
+                        </div>
+                        <div class="stat-number">24</div>
+                        <div class="stat-label">Cursos Activos</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon director">
+                            <i class="pi pi-chart-bar"></i>
+                        </div>
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Satisfacción</div>
+                    </div>
+                </ui:fragment>
+                
+                <ui:fragment rendered="#{autenticacionService.esProfesor()}">
+                    <div class="stat-card">
+                        <div class="stat-icon profesor">
+                            <i class="pi pi-book"></i>
+                        </div>
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Mis Cursos</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon profesor">
+                            <i class="pi pi-users"></i>
+                        </div>
+                        <div class="stat-number">120</div>
+                        <div class="stat-label">Estudiantes</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon profesor">
+                            <i class="pi pi-star"></i>
+                        </div>
+                        <div class="stat-number">4.8</div>
+                        <div class="stat-label">Calificación</div>
+                    </div>
+                </ui:fragment>
+                
+                <ui:fragment rendered="#{autenticacionService.esEstudiante()}">
+                    <div class="stat-card">
+                        <div class="stat-icon estudiante">
+                            <i class="pi pi-book"></i>
+                        </div>
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Mis Cursos</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon estudiante">
+                            <i class="pi pi-star"></i>
+                        </div>
+                        <div class="stat-number">8.5</div>
+                        <div class="stat-label">Promedio</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon estudiante">
+                            <i class="pi pi-calendar"></i>
+                        </div>
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Asistencia</div>
+                    </div>
+                </ui:fragment>
+            </div>
+            
+            <div class="welcome-card">
+                <h3>Información del Sistema</h3>
+                <p>Este es un sistema de gestión académica que permite administrar usuarios, 
+                   perfiles y privilegios de acuerdo al rol asignado.</p>
+                <p><strong>Funcionalidades disponibles según tu perfil:</strong></p>
+                <ul>
+                    <ui:fragment rendered="#{autenticacionService.esDirector()}">
+                        <li>Gestión completa de usuarios y perfiles</li>
+                        <li>Administración de privilegios del sistema</li>
+                        <li>Acceso a reportes y estadísticas</li>
+                        <li>Configuración del sistema</li>
+                    </ui:fragment>
+                    <ui:fragment rendered="#{autenticacionService.esProfesor()}">
+                        <li>Gestión de cursos asignados</li>
+                        <li>Administración de estudiantes</li>
+                        <li>Registro de calificaciones</li>
+                        <li>Control de asistencia</li>
+                    </ui:fragment>
+                    <ui:fragment rendered="#{autenticacionService.esEstudiante()}">
+                        <li>Consulta de cursos inscritos</li>
+                        <li>Visualización de calificaciones</li>
+                        <li>Consulta de asistencia</li>
+                        <li>Gestión de perfil personal</li>
+                    </ui:fragment>
+                </ul>
+            </div>
+        </div>
+    </div>
+</h:body>
+
+</html>
+

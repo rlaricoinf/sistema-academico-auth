@@ -1,0 +1,159 @@
+/ objetivo /
+! .mvn / wrapper / maven-wrapper.jar
+# ## STS ###
+.apt_generado
+.ruta de clases
+.factorypath
+.proyecto
+.ajustes
+.springBeans
+.sts4-cache
+# Creado por https://www.gitignore.io/api/git,java,maven,eclipse,windows
+# ## Eclipse ###
+.metadatos
+papelera /
+temporal /
+* .tmp
+* .bak
+* .swp
+* ~.nib
+propiedades locales
+.ajustes /
+.ruta de carga
+.recomendadores
+# Constructores de herramientas externas
+.constructoresdeherramientasexternas /
+# "Configuraciones de lanzamiento de Eclipse" almacenadas localmente
+* .lanzamiento
+# Específico de PyDev (IDE de Python para Eclipse)
+* .pydevproject
+# Herramientas específicas de CDT (Herramientas de desarrollo de C/C++)
+.cproyecto
+# CDT-herramientas automáticas
+.autotools
+# Procesador de anotaciones de Java (APT)
+.factorypath
+# Herramientas de desarrollo específicas de PDT (PHP)
+.ruta de construcción
+# complemento sbteclipse
+.objetivo
+# Complemento Tern
+proyecto .tern
+# Complemento TeXlipse
+.texlipse
+# STS (Conjunto de herramientas Spring)
+.springBeans
+# Recomendadores de código
+.recomendadores /
+# Procesamiento de anotaciones
+.apt_generado /
+# Específico de Scala IDE (desarrollo de Scala y Java para Eclipse)
+.cache-principal
+.scala_dependencies
+.hoja de trabajo
+# ## Parche Eclipse ###
+# Núcleo de Eclipse
+.proyecto
+# Específico de JDT (Herramientas de desarrollo de Java de Eclipse)
+.ruta de clases
+# Procesamiento de anotaciones
+.apt_generado
+.sts4-cache /
+# ## Git ###
+# Creado por Git para copias de seguridad. Para deshabilitar las copias de seguridad en Git:
+# $ git config --global mergetool.keepBackup falso
+* .orig
+# Creado por git al usar herramientas de fusión para conflictos
+* .RESPALDO. *
+* .BASE. *
+* .LOCAL. *
+* .REMOTO. *
+* _COPIA DE SEGURIDAD_ * .txt
+* _BASE_ * .txt
+* _LOCAL_ * .txt
+* _REMOTO_ * .txt
+# ## Java ###
+# Archivo de clase compilado
+* .clase
+# Archivo de registro
+* .registro
+# Archivos BlueJ
+* .ctxt
+# Herramientas móviles para Java (J2ME)
+.mtj.tmp /
+# Archivos del paquete #
+* .frasco
+* .guerra
+* .nar
+* .oreja
+* .cremallera
+* .tar.gz
+* .rar
+# registros de fallos de la máquina virtual, consulte http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid *
+# ## Maven ###
+objetivo /
+etiqueta pom.xml
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.siguiente
+liberación.propiedades
+dependencia-reducida-pom.xml
+buildNumber.propiedades
+.mvn / timing.properties
+.mvn / wrapper / maven-wrapper.jar
+# ## Ventanas ###
+# Archivos de caché de miniaturas de Windows
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+# Archivo de volcado
+* .stackdump
+# Archivo de configuración de carpeta
+[ Dd ] esktop.ini
+# Papelera de reciclaje utilizada en recursos compartidos de archivos
+$RECYCLE.BIN /
+# Archivos del instalador de Windows
+* .taxi
+* .msi
+* .msix
+* .msm
+* .msp
+# Atajos de Windows
+* .lnk
+# ## IDEA de IntelliJ ###
+.idea
+* .iws
+* .iml
+* .ipr
+# ## NetBeans ###
+/ nbproject / privado /
+/ nbbuild /
+/ dist /
+/ nbdist /
+/ .nb-gradle /
+construir /
+! ** / src / main / ** / compilación /
+! ** / src / prueba / ** / compilación /
+# ## Código VS ###
+.vscode /
+# ## Algunos ignorados adicionales (ordenar más tarde)
+* .DS_Store
+* .sudoeste ?
+. # *
+* #
+* ~
+.ruta de clases
+.proyecto
+.ajustes
+papelera
+construir
+objetivo
+dependencia-reducida-pom.xml
+* .sublime- *
+/ rascar
+.gradle
+README.html
+* .iml
+.idea
+.ejercicio

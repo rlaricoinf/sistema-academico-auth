@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="jakarta.faces.html"
+		xmlns:f="jakarta.faces.core"
+		xmlns:p="primefaces"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      >
+
+<h:head>
+    <title>Sistema Académico - Login</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .login-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .login-header {
+            margin-bottom: 30px;
+        }
+        
+        .login-header h1 {
+            color: #333;
+            margin: 0;
+            font-size: 28px;
+            font-weight: 300;
+        }
+        
+        .login-header p {
+            color: #666;
+            margin: 10px 0 0 0;
+            font-size: 14px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .ui-inputtext {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .ui-inputtext:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+        
+        .ui-button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .ui-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .ui-message-error {
+            background: #fee;
+            border: 1px solid #fcc;
+            color: #c33;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        
+        .error-message {
+            background: #fee;
+            border: 1px solid #fcc;
+            color: #c33;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
+</h:head>
+
+<h:body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>🎓 Sistema Académico</h1>
+            <p>Inicie sesión para acceder al sistema</p>
+        </div>
+        
+        <h:form id="loginForm">
+            <p:messages id="messages" showDetail="true" closable="true"/>
+            
+            <div class="form-group">
+                <label for="username">Usuario:</label>
+                <p:inputText id="username" 
+                           value="#{loginBean.username}" 
+                           placeholder="Ingrese su nombre de usuario"
+                           required="true"
+                           requiredMessage="El nombre de usuario es obligatorio"/>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <p:password id="password" 
+                          value="#{loginBean.password}" 
+                          placeholder="Ingrese su contraseña"
+                          required="true"
+                          requiredMessage="La contraseña es obligatoria"
+                          feedback="false"/>
+            </div>
+            
+            <p:commandButton value="Iniciar Sesión" 
+                           action="#{loginBean.login()}"
+                           update="messages"
+                           styleClass="ui-button"/>
+            
+            <ui:fragment rendered="#{loginBean.error}">
+                <div class="error-message">
+                    #{loginBean.mensajeError}
+                </div>
+            </ui:fragment>
+        </h:form>
+        
+        <div class="footer">
+            <p>© 2024 Sistema Académico - Todos los derechos reservados</p>
+        </div>
+    </div>
+</h:body>
+
+</html>
+
