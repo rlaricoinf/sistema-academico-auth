@@ -1,0 +1,32 @@
+# Script de configuración para WildFly 33
+# Ejecutar con: ./jboss-cli.sh --file=configure-wildfly.cli
+
+# Crear el módulo PostgreSQL
+module add --name=org.postgresql --resources=postgresql-42.6.0.jar --dependencies=javax.api,javax.transaction.api
+
+# Crear el DataSource
+/subsystem=datasources/data-source=AcademicoDS:add(
+    jndi-name=java:jboss/datasources/AcademicoDS,
+    driver-name=postgresql,
+    connection-url=jdbc:postgresql://localhost:5432/sistema_academico,
+    user-name=postgres,
+    password=postgres,
+    min-pool-size=5,
+    max-pool-size=20,
+    pool-prefill=true,
+    pool-use-strict-min=true,
+    enabled=true
+)
+
+# Configurar el driver PostgreSQL
+/subsystem=datasources/jdbc-driver=postgresql:add(
+    driver-name=postgresql,
+    driver-module-name=org.postgresql,
+    driver-class-name=org.postgresql.Driver
+)
+
+# Habilitar el DataSource
+/subsystem=datasources/data-source=AcademicoDS:enable
+
+# Recargar la configuración
+:reload
